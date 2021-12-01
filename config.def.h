@@ -42,7 +42,11 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "(M)",      monocle },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -75,13 +79,20 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_i,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,		XK_l,	   spawn,	   {.v = slock } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },/*Tiled*/
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },/*Floating*/
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },/*Monocle*/
+	{ MODKEY|ShiftMask,		XK_m,	   setlayout,	   {.v = &layouts[3]} },/*Center master tiled*/
+	{ MODKEY|ControlMask|ShiftMask,	XK_m,	   setlayout,	   {.v = &layouts[4]} },/*Center master float*/
+	{ MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[5]} },/*Bottom stack*/
+	{ MODKEY|ControlMask|ShiftMask,	XK_o,      setlayout,      {.v = &layouts[6]} },/*Bottom stack horiz*/
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
