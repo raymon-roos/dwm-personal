@@ -67,6 +67,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *filebrws[]  = { "st", "-e", "sfm", NULL };
 static const char *top[]  = { "st", "-e", "top", NULL };
+static const char *con[]  = { "st", "-e", "connmanctl", NULL };
 static const char *slock[] = { "slock", NULL };
 static const char *web[] = { "librewolf", NULL };
 
@@ -76,6 +77,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_b,	   spawn,	   {.v = web } },
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	   {.v = top } },
 	{ MODKEY,			XK_f,	   spawn,	   {.v = filebrws } },
+	{ MODKEY,			XK_c,	   spawn,	   {.v = con } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
