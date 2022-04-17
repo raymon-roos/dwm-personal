@@ -5,7 +5,7 @@ accessible for all my devices and gain familiarity with working with github. Bel
 included the original readme from the [suckless dwm project][2].
 
 [1]: https://dwm.suckless.org/ "dwm homepage" 
-[1]: https://git.suckless.org/dwm/ "dwm source code" 
+[2]: https://git.suckless.org/dwm/ "dwm source code" 
 
 ### patches applied are (in no particular order): 
 > - [cfacts][3] Allow resizing clients in stack.
