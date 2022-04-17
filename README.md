@@ -1,27 +1,30 @@
 # Welcome to my personal build of dwm
 
-This project exists solely to host my personal patched version of dwm and make it easily
+This project exists solely to host my personal patched version of [dwm][1] and make it easily
 accessible for all my devices and gain familiarity with working with github. Below is
-included the original readme from the suckless dwm project.
+included the original readme from the [suckless dwm project][2].
+
+[1]: https://dwm.suckless.org/ "dwm homepage" 
+[1]: https://git.suckless.org/dwm/ "dwm source code" 
 
 ### patches applied are (in no particular order): 
-> - [cfacts][1] Allow resizing clients in stack.
-> - [adjacent tags][2] Switch to next or previous tag.
-> - [attach aside and below][3] Don't push existing clients around when spawning a new one.
-> - [hide vacant tags][4] Don't render tag icons in title bar for tags without clients.
-> - [in place rotate][5] Rotate clients around their stack, or around master and stack.
-> - [pertag - perseltag][6] Allow different master/stack sizes and layouts for tags
-> - [dynamic scratchpads][7] Assign windows to scratchpad and hide/show cycle through them
-> - [titlecolor][8] Allow coloring the title bar.
+> - [cfacts][3] Allow resizing clients in stack.
+> - [adjacent tags][4] Switch to next or previous tag.
+> - [attach aside and below][5] Don't push existing clients around when spawning a new one.
+> - [hide vacant tags][6] Don't render tag icons in title bar for tags without clients.
+> - [in place rotate][7] Rotate clients around their stack, or around master and stack.
+> - [pertag - perseltag][8] Allow different master/stack sizes and layouts for tags
+> - [dynamic scratchpads][9] Assign windows to scratchpad and hide/show cycle through them
+> - [titlecolor][10] Allow coloring the title bar.
 
-[1]: https://dwm.suckless.org/patches/cfacts/ "Clients size factor" 
-[2]: https://dwm.suckless.org/patches/focusadjacenttag/ "Focus adjacent tags" 
-[3]: https://dwm.suckless.org/patches/attachasideandbelow/ "Attach aside and below" 
-[4]: https://dwm.suckless.org/patches/hide_vacant_tags/ "Hide vacant tags" 
-[5]: https://dwm.suckless.org/patches/inplacerotate/ "In place rotate" 
-[6]: https://dwm.suckless.org/patches/pertag/ "Per (selected) tag" 
-[7]: https://dwm.suckless.org/patches/dynamicscratchpads/ "Dynamic scratchpads" 
-[8]: https://dwm.suckless.org/patches/titlecolor/ "Title color" 
+[3]: https://dwm.suckless.org/patches/cfacts/ "Clients size factor" 
+[4]: https://dwm.suckless.org/patches/focusadjacenttag/ "Focus adjacent tags" 
+[5]: https://dwm.suckless.org/patches/attachasideandbelow/ "Attach aside and below" 
+[6]: https://dwm.suckless.org/patches/hide_vacant_tags/ "Hide vacant tags" 
+[7]: https://dwm.suckless.org/patches/inplacerotate/ "In place rotate" 
+[8]: https://dwm.suckless.org/patches/pertag/ "Per (selected) tag" 
+[9]: https://dwm.suckless.org/patches/dynamicscratchpads/ "Dynamic scratchpads" 
+[10]: https://dwm.suckless.org/patches/titlecolor/ "Title color" 
 
 ### configuration changes
 > - Colors. Flat black for all backgrounds, same colors for the title as for the rest of
@@ -30,6 +33,8 @@ included the original readme from the suckless dwm project.
 >   operations to avoid collisions with app specific hotkeys.
 > - Added binds for launching specific terminal commands and programs, such as my browser
 >   (librewolf) or `top` or `connmanctl` 
+
+### Original README below:
 
 dwm - dynamic window manager
 ============================
