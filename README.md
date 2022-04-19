@@ -28,7 +28,7 @@ included the original readme from the [suckless dwm project][2].
 
 ### configuration changes
 > - Colors. Flat black for all backgrounds, same colors for the title as for the rest of
->   the bar.
+>   the bar. 1 Pixel clear white border.
 > - Keybindings. I use the meta (windows) key as a modifier for all window manager related
 >   operations to avoid collisions with app specific hotkeys.
 > - Added binds for launching specific terminal commands and programs, such as my browser
