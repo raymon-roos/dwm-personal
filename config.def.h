@@ -70,6 +70,7 @@ static const char *top[]  = { "st", "-e", "top", NULL };
 static const char *con[]  = { "st", "-e", "connmanctl", NULL };
 static const char *slock[] = { "slock", NULL };
 static const char *web[] = { "librewolf", NULL };
+static const char *mail[]  = { "st", "-e", "neomutt", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -78,6 +79,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	   {.v = top } },
 	{ MODKEY,			XK_f,	   spawn,	   {.v = filebrws } },
 	{ MODKEY,			XK_c,	   spawn,	   {.v = con } },
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	   {.v = mail } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
