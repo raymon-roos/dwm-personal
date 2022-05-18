@@ -32,7 +32,7 @@ included the original readme from the [suckless dwm project][2].
 > - Keybindings. I use the meta (windows) key as a modifier for all window manager related
 >   operations to avoid collisions with app specific hotkeys.
 > - Added binds for launching specific terminal commands and programs, such as my browser
->   (librewolf) or `top` or `connmanctl` 
+>   (librewolf) or `top`, `connmanctl` or `sfm`
 
 ### Original README below:
 
