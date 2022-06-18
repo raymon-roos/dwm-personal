@@ -16,6 +16,7 @@ included the original readme from the [suckless dwm project][2].
 > - [pertag - perseltag][8] Allow different master/stack sizes and layouts for tags
 > - [dynamic scratchpads][9] Assign windows to scratchpad and hide/show cycle through them
 > - [titlecolor][10] Allow coloring the title bar.
+> - [center][11] Adds a rule for automatically centering floating clients on launch.
 
 [3]: https://dwm.suckless.org/patches/cfacts/ "Clients size factor" 
 [4]: https://dwm.suckless.org/patches/focusadjacenttag/ "Focus adjacent tags" 
@@ -25,6 +26,7 @@ included the original readme from the [suckless dwm project][2].
 [8]: https://dwm.suckless.org/patches/pertag/ "Per (selected) tag" 
 [9]: https://dwm.suckless.org/patches/dynamicscratchpads/ "Dynamic scratchpads" 
 [10]: https://dwm.suckless.org/patches/titlecolor/ "Title color" 
+[11]: https://dwm.suckless.org/patches/center/ "Center rule for floating clients" 
 
 ### configuration changes
 > - Colors. Flat black for all backgrounds, same colors for the title as for the rest of
