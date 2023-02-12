@@ -93,10 +93,10 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_k,      inplacerotate,  {.i = -2} },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.20} },
-	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.20} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.03} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.03} },
+	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.15} },
+	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.15} },
 	{ MODKEY|ShiftMask,             XK_i,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -152,4 +152,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
