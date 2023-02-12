@@ -75,6 +75,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,			XK_b,	   spawn,	   {.v = web } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("passmenu") },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          TRMCMD("top") },
 	{ MODKEY,                       XK_f,      spawn,          TRMCMD("launch_nnn.sh") },
 	{ MODKEY,                       XK_n,      spawn,          {.v = guimail } },
