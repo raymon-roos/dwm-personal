@@ -74,10 +74,15 @@ static const char *guimail[] = { "thunderbird", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,			XK_b,	   spawn,	   {.v = web } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("passmenu") },
+	{ MODKEY,                       XK_b,      spawn,          {.v = web } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          TRMCMD("top") },
 	{ MODKEY,                       XK_f,      spawn,          TRMCMD("launch_nnn.sh") },
+	{ MODKEY,                       XK_c,      spawn,          TRMCMD("cmus") },
+	{ MODKEY|ControlMask,           XK_c,      spawn,          SHCMD("cmus-remote -u") },
+	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("cmus-remote -n") },
+	{ MODKEY|ControlMask,           XK_z,      spawn,          SHCMD("cmus-remote -r") },
+	{ MODKEY|ControlMask,           XK_m,      spawn,          SHCMD("cmus-remote -C 'toggle aaa_mode'") },
 	{ MODKEY,                       XK_n,      spawn,          {.v = guimail } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          TRMCMD("neomutt") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
