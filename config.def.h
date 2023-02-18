@@ -78,7 +78,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,      spawn,          {.v = web } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          TRMCMD("top") },
 	{ MODKEY,                       XK_f,      spawn,          TRMCMD("launch_nnn.sh") },
-	{ MODKEY,                       XK_c,      spawn,          TRMCMD("cmus") },
+	{ MODKEY,                       XK_c,      spawn,          SHCMD("launch_cmus.sh") },
 	{ MODKEY|ControlMask,           XK_c,      spawn,          SHCMD("cmus-remote -u") },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("cmus-remote -n") },
 	{ MODKEY|ControlMask,           XK_z,      spawn,          SHCMD("cmus-remote -r") },
