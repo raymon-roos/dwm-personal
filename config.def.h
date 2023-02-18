@@ -88,7 +88,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_n,      spawn,          {.v = guimail } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          TRMCMD("neomutt") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      inplacerotate,  {.i = +1} },
@@ -104,12 +104,12 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_i,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ControlMask|ShiftMask,	XK_l,	   spawn,	   {.v = slock } },
+	{ MODKEY|ControlMask|ShiftMask,	XK_l,	   spawn,          {.v = slock } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },/*Tiled*/
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },/*Floating*/
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },/*Monocle*/
-	{ MODKEY|ShiftMask,		XK_m,	   setlayout,	   {.v = &layouts[3]} },/*Center master tiled*/
+	{ MODKEY|ShiftMask,             XK_m,	   setlayout,	   {.v = &layouts[3]} },/*Center master tiled*/
 	{ MODKEY|ControlMask|ShiftMask,	XK_m,	   setlayout,	   {.v = &layouts[4]} },/*Center master float*/
 	{ MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[5]} },/*Bottom stack*/
 	{ MODKEY|ControlMask|ShiftMask,	XK_o,      setlayout,      {.v = &layouts[6]} },/*Bottom stack horiz*/
