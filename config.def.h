@@ -82,8 +82,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          TRMCMD("top") },
 	{ MODKEY,                       XK_r,      spawn,          TRMCMD("calc") },
 	{ MODKEY,                       XK_f,      spawn,          TRMCMD("launch_nnn.sh") },
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("launch_cmus.sh") },
-	{ MODKEY|ControlMask,           XK_c,      spawn,          SHCMD("cmus-remote -u") },
+	{ MODKEY|ControlMask,           XK_c,      spawn,          SHCMD("launch_cmus.sh") },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("cmus-remote -n") },
 	{ MODKEY|ControlMask,           XK_z,      spawn,          SHCMD("cmus-remote -r") },
 	{ MODKEY|ControlMask,           XK_m,      spawn,          SHCMD("cmus-remote -C 'toggle aaa_mode'") },
@@ -97,13 +96,13 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      inplacerotate,  {.i = -1} },
 	{ MODKEY|ControlMask|ShiftMask, XK_j,      inplacerotate,  {.i = +2} },
 	{ MODKEY|ControlMask|ShiftMask, XK_k,      inplacerotate,  {.i = -2} },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.03} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.03} },
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.15} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.15} },
-	{ MODKEY|ShiftMask,             XK_i,      setcfact,       {.f =  0.00} },
+	{ MODKEY|ControlMask|ShiftMask, XK_i,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ControlMask|ShiftMask,	XK_l,	   spawn,          {.v = slock } },
@@ -127,6 +126,15 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Left,   viewprev,       {0} },
 	{ MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} },
 	{ MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} },
+	{ MODKEY,                       XK_q,      moveplace,      {.ui = WIN_NW }},
+	{ MODKEY,                       XK_w,      moveplace,      {.ui = WIN_N  }},
+	{ MODKEY,                       XK_e,      moveplace,      {.ui = WIN_NE }},
+	{ MODKEY,                       XK_a,      moveplace,      {.ui = WIN_W  }},
+	{ MODKEY,                       XK_s,      moveplace,      {.ui = WIN_C  }},
+	{ MODKEY,                       XK_d,      moveplace,      {.ui = WIN_E  }},
+	{ MODKEY,                       XK_z,      moveplace,      {.ui = WIN_SW }},
+	{ MODKEY,                       XK_x,      moveplace,      {.ui = WIN_S  }},
+	{ MODKEY,                       XK_c,      moveplace,      {.ui = WIN_SE }},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -136,7 +144,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_minus, scratchpad_show, {0} },
 	{ MODKEY|ShiftMask,             XK_minus, scratchpad_hide, {0} },
 	{ MODKEY,                       XK_equal,scratchpad_remove,{0} },
