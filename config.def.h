@@ -17,7 +17,7 @@ static const char col_orange[]      = "#ab381c";
 static const char col_orange2[]     = "#673722";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_cyan },
+	[SchemeNorm] = { col_gray3, col_gray1, col_orange2 },
 	[SchemeSel]  = { col_gray4, col_orange, col_gray4  },
 	[SchemeTitle]  = { col_gray0, col_gray1,  col_cyan  },
 };
@@ -35,6 +35,7 @@ static const Rule rules[] = {
 	{ "Dragon",      "dragon",      NULL,    0,         1,          1,          -1 },
 	{ "term-float",  "st-256color", NULL,    0,         1,          1,          -1 },
 	{ "cmus",        "st-256color", NULL,    0,         0,          0,           0 },
+	{ "dmenu",       "dmenu",       NULL,    0,         1,          1,          -1 },
 };
 
 /* layout(s) */
@@ -68,15 +69,28 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *slock[] = { "slock", NULL };
-static const char *web[] = { "librewolf", NULL };
+static const char *dmenucmd[] = {
+    "dmenu_run", "-m", dmenumon,
+    "-fn", dmenufont, "-nb", col_gray1,
+    "-nf", col_gray3, "-sb", col_orange,
+    "-sf", col_gray4, NULL
+};
+static const char *dmenumgd[] = {
+    "dmenu_run", "-m", dmenumon,
+    "-fn", dmenufont, "-nb", col_gray1,
+    "-nf", col_gray3, "-sb", col_orange,
+    "-sf", col_gray4, "-c", "-wm",
+    NULL
+};
+static const char *termcmd[] = { "st", NULL };
+static const char *slock[]   = { "slock", NULL };
+static const char *web[]     = { "librewolf", NULL };
 static const char *guimail[] = { "thunderbird", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenumgd } },
+	{ MODKEY|ControlMask|ShiftMask, XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("passmenu") },
 	{ MODKEY,                       XK_b,      spawn,          {.v = web } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          TRMCMD("top") },
