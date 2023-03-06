@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 1;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:pixelsize=11:antialias=true" };
-static const char dmenufont[]       = "Source Code Pro:pixelsize=11:antialias=true";
+static const char *fonts[]          = { "CaskaydiaCove Nerd Font:style=Regular:size=4:antialias=true" };
+static const char dmenufont[]       = "CaskaydiaCove Nerd Font:style=Regular:size=5:antialias=true";
 static const char col_gray0[]       = "#F4F6F6";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	{ "thunderbird", "Calendar",    NULL,    0,         1,          1,          -1 },
 	{ "Dragon",      "dragon",      NULL,    0,         1,          1,          -1 },
 	{ "term-float",  "st-256color", NULL,    0,         1,          1,          -1 },
-	{ "cmus",        "st-256color", NULL,    0,         0,          0,           0 },
+	{ "cmus",        "st-256color", NULL,    0,         0,          0,           1 },
 	{ "dmenu",       "dmenu",       NULL,    0,         1,          1,          -1 },
 };
 
@@ -132,10 +132,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = +1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = -1 } },
 	{ MODKEY,                       XK_Right,  viewnext,       {0} },
 	{ MODKEY,                       XK_Left,   viewprev,       {0} },
 	{ MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} },
