@@ -49,10 +49,6 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "(M)",      monocle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -124,10 +120,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },/*Tiled*/
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },/*Floating*/
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },/*Monocle*/
-	{ MODKEY|ShiftMask,             XK_m,	   setlayout,	   {.v = &layouts[3]} },/*Center master tiled*/
-	{ MODKEY|ControlMask|ShiftMask,	XK_m,	   setlayout,	   {.v = &layouts[4]} },/*Center master float*/
-	{ MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[5]} },/*Bottom stack*/
-	{ MODKEY|ControlMask|ShiftMask,	XK_o,      setlayout,      {.v = &layouts[6]} },/*Bottom stack horiz*/
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
