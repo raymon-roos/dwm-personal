@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	{ "thunderbird", "Calendar",    NULL,    0,         1,          1,          -1 },
 	{ "Dragon",      "dragon",      NULL,    0,         1,          1,          -1 },
 	{ "term-float",  "st-256color", NULL,    0,         1,          1,          -1 },
-	{ "cmus",        "st-256color", NULL,    0,         0,          0,           1 },
+	{ "cmus",        "st-256color", NULL,    0,         0,          0,           2 },
 	{ "dmenu",       "dmenu",       NULL,    0,         1,          1,          -1 },
 };
 
