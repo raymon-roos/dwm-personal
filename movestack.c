@@ -1,5 +1,6 @@
 void
-movestack(const Arg *arg) {
+movestack(const Arg *arg) 
+{
 	Client *c = NULL, *p = NULL, *pc = NULL, *i;
 
 	if(arg->i > 0) {

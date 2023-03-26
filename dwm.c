@@ -61,6 +61,7 @@
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel, SchemeTitle }; /* color schemes */
+enum { ModeCommand, ModeInsert };
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -101,6 +102,13 @@ struct Client {
 	Monitor *mon;
 	Window win;
 };
+
+typedef struct {
+	unsigned int mod[4];
+	KeySym keysym[4];
+	void (*func)(const Arg *);
+	const Arg arg;
+} Command;
 
 typedef struct {
 	unsigned int mod;
@@ -159,6 +167,7 @@ static void buttonpress(XEvent *e);
 static void checkotherwm(void);
 static void cleanup(void);
 static void cleanupmon(Monitor *mon);
+static void clearcmd(const Arg *arg);
 static void clientmessage(XEvent *e);
 static void configure(Client *c);
 static void configurenotify(XEvent *e);
@@ -184,6 +193,7 @@ static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
+static void keypresscmd(XEvent *e);
 static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
@@ -215,6 +225,8 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
+static void setinsertmode(void);
+static void setkeymode(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setcfact(const Arg *arg);
 static void setmfact(const Arg *arg);
@@ -259,6 +271,8 @@ static int sw, sh;           /* X display screen geometry width, height */
 static int bh;               /* bar height */
 static int lrpad;            /* sum of left and right padding for text */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
+static unsigned int cmdmod[4];
+static unsigned int keymode = ModeCommand;
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
 	[ButtonPress] = buttonpress,
@@ -282,6 +296,7 @@ static Cur *cursor[CurLast];
 static Clr **scheme;
 static Display *dpy;
 static Drw *drw;
+static KeySym cmdkeysym[4];
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
@@ -569,6 +584,17 @@ cleanupmon(Monitor *mon)
 	XUnmapWindow(dpy, mon->barwin);
 	XDestroyWindow(dpy, mon->barwin);
 	free(mon);
+}
+
+void
+clearcmd(const Arg *arg)
+{
+	unsigned int i;
+
+	for (i = 0; i < LENGTH(cmdkeysym); i++) {
+		cmdkeysym[i] = 0;
+		cmdmod[i] = 0;
+	}
 }
 
 void
@@ -1029,6 +1055,13 @@ grabbuttons(Client *c, int focused)
 void
 grabkeys(void)
 {
+	if (keymode == ModeCommand) {
+		XUngrabKey(dpy, AnyKey, AnyModifier, root);
+		XGrabKeyboard(dpy, root, True, GrabModeAsync, GrabModeAsync, CurrentTime);
+		return;
+	}
+
+	XUngrabKeyboard(dpy, CurrentTime);
 	updatenumlockmask();
 	{
 		unsigned int i, j, k;
@@ -1089,6 +1122,11 @@ keypress(XEvent *e)
 	KeySym keysym;
 	XKeyEvent *ev;
 
+	if (keymode == ModeCommand) {
+		keypresscmd(e);
+		return;
+	}
+
 	ev = &e->xkey;
 	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
 	for (i = 0; i < LENGTH(keys); i++)
@@ -1096,6 +1134,52 @@ keypress(XEvent *e)
 		&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
 		&& keys[i].func)
 			keys[i].func(&(keys[i].arg));
+}
+
+void
+keypresscmd(XEvent *e) {
+	unsigned int i, j;
+	int matches = 0;
+	KeySym keysym;
+	XKeyEvent *ev;
+
+	ev = &e->xkey;
+	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
+	if (XK_Shift_L <= keysym && keysym <= XK_Hyper_R) {
+		return;
+	}
+
+	for (i = 0; i < LENGTH(cmdkeys); i++) {
+		if (keysym == cmdkeys[i].keysym
+		&& CLEANMASK(cmdkeys[i].mod) == CLEANMASK(ev->state)
+		&& cmdkeys[i].func) {
+			cmdkeys[i].func(&(cmdkeys[i].arg));
+			return;
+		}
+	}
+
+	for (j = 0; j < LENGTH(cmdkeysym); j++) {
+		if (cmdkeysym[j] == 0) {
+			cmdkeysym[j] = keysym;
+			cmdmod[j] = ev->state;
+			break;
+		}
+	}
+
+	for (i = 0; i < LENGTH(commands); i++) {
+		matches = 0;
+		for (j = 0; j < LENGTH(cmdkeysym); j++) {
+			if (cmdkeysym[j] == commands[i].keysym[j]
+			&& CLEANMASK(cmdmod[j]) == CLEANMASK(commands[i].mod[j]))
+				matches++;
+		}
+		if (matches == LENGTH(cmdkeysym)) {
+			if (commands[i].func)
+				commands[i].func(&(commands[i].arg));
+			clearcmd(NULL);
+			return;
+		}
+	}
 }
 
 void
@@ -1667,6 +1751,24 @@ setclientstate(Client *c, long state)
 		PropModeReplace, (unsigned char *)data, 2);
 }
 
+void
+setinsertmode()
+{
+	keymode = ModeInsert;
+	clearcmd(NULL);
+	grabkeys();
+}
+
+void
+setkeymode(const Arg *arg)
+{
+	if(!arg)
+		return;
+	keymode = arg->ui;
+	clearcmd(NULL);
+	grabkeys();
+}
+
 int
 sendevent(Client *c, Atom proto)
 {
@@ -1914,6 +2016,7 @@ showhide(Client *c)
 void
 spawn(const Arg *arg)
 {
+	setinsertmode();
 	if (arg->v == dmenucmd)
 		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
