@@ -464,7 +464,8 @@ arrangemon(Monitor *m)
 }
 
 void
-aspectresize(const Arg *arg) {
+aspectresize(const Arg *arg)
+{
 	/* only floating windows can be moved */
 	Client *c;
 	c = selmon->sel;
@@ -493,6 +494,7 @@ attach(Client *c)
 	c->next = c->mon->clients;
 	c->mon->clients = c;
 }
+
 void
 attachBelow(Client *c)
 {
@@ -1082,21 +1084,19 @@ void
 grabbuttons(Client *c, int focused)
 {
 	updatenumlockmask();
-	{
-		unsigned int i, j;
-		unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
-		XUngrabButton(dpy, AnyButton, AnyModifier, c->win);
-		if (!focused)
-			XGrabButton(dpy, AnyButton, AnyModifier, c->win, False,
-				BUTTONMASK, GrabModeSync, GrabModeSync, None, None);
-		for (i = 0; i < LENGTH(buttons); i++)
-			if (buttons[i].click == ClkClientWin)
-				for (j = 0; j < LENGTH(modifiers); j++)
-					XGrabButton(dpy, buttons[i].button,
-						buttons[i].mask | modifiers[j],
-						c->win, False, BUTTONMASK,
-						GrabModeAsync, GrabModeSync, None, None);
-	}
+    unsigned int i, j;
+    unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
+    XUngrabButton(dpy, AnyButton, AnyModifier, c->win);
+    if (!focused)
+        XGrabButton(dpy, AnyButton, AnyModifier, c->win, False,
+            BUTTONMASK, GrabModeSync, GrabModeSync, None, None);
+    for (i = 0; i < LENGTH(buttons); i++)
+        if (buttons[i].click == ClkClientWin)
+            for (j = 0; j < LENGTH(modifiers); j++)
+                XGrabButton(dpy, buttons[i].button,
+                    buttons[i].mask | modifiers[j],
+                    c->win, False, BUTTONMASK,
+                    GrabModeAsync, GrabModeSync, None, None);
 }
 
 void
@@ -1110,28 +1110,27 @@ grabkeys(void)
 
 	XUngrabKeyboard(dpy, CurrentTime);
 	updatenumlockmask();
-	{
-		unsigned int i, j, k;
-		unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
-		int start, end, skip;
-		KeySym *syms;
 
-		XUngrabKey(dpy, AnyKey, AnyModifier, root);
-		XDisplayKeycodes(dpy, &start, &end);
-		syms = XGetKeyboardMapping(dpy, start, end - start + 1, &skip);
-		if (!syms)
-			return;
-		for (k = start; k <= end; k++)
-			for (i = 0; i < LENGTH(keys); i++)
-				/* skip modifier codes, we do that ourselves */
-				if (keys[i].keysym == syms[(k - start) * skip])
-					for (j = 0; j < LENGTH(modifiers); j++)
-						XGrabKey(dpy, k,
-							 keys[i].mod | modifiers[j],
-							 root, True,
-							 GrabModeAsync, GrabModeAsync);
-		XFree(syms);
-	}
+    unsigned int i, j, k;
+    unsigned int modifiers[] = { 0, LockMask, numlockmask, numlockmask|LockMask };
+    int start, end, skip;
+    KeySym *syms;
+
+    XUngrabKey(dpy, AnyKey, AnyModifier, root);
+    XDisplayKeycodes(dpy, &start, &end);
+    syms = XGetKeyboardMapping(dpy, start, end - start + 1, &skip);
+    if (!syms)
+        return;
+    for (k = start; k <= end; k++)
+        for (i = 0; i < LENGTH(keys); i++)
+            /* skip modifier codes, we do that ourselves */
+            if (keys[i].keysym == syms[(k - start) * skip])
+                for (j = 0; j < LENGTH(modifiers); j++)
+                    XGrabKey(dpy, k,
+                         keys[i].mod | modifiers[j],
+                         root, True,
+                         GrabModeAsync, GrabModeAsync);
+    XFree(syms);
 }
 
 void
@@ -1143,8 +1142,7 @@ incnmaster(const Arg *arg)
 		if(selmon->tagset[selmon->seltags] & 1<<i)
 			selmon->pertag->nmasters[i+1] = selmon->nmaster;
 	
-	if(selmon->pertag->curtag == 0)
-	{
+	if(selmon->pertag->curtag == 0) {
 		selmon->pertag->nmasters[0] = selmon->nmaster;
 	}
 	arrange(selmon);
@@ -1184,7 +1182,8 @@ keypress(XEvent *e)
 }
 
 void
-keypresscmd(XEvent *e) {
+keypresscmd(XEvent *e)
+{
 	unsigned int i, j;
 	int matches = 0;
 	KeySym keysym;
@@ -1427,7 +1426,8 @@ movemouse(const Arg *arg)
 }
 
  Client *
-nexttagged(Client *c) {
+nexttagged(Client *c)
+{
 	Client *walked = c->mon->clients;
 	for(;
 		walked && (walked->isfloating || !ISVISIBLEONTAG(walked, c->tags));
@@ -1467,7 +1467,8 @@ moveplace(const Arg *arg)
 }
 
 void
-moveresize(const Arg *arg) {
+moveresize(const Arg *arg)
+{
 	/* only floating windows can be moved */
 	Client *c;
 	c = selmon->sel;
@@ -1533,9 +1534,9 @@ moveresize(const Arg *arg) {
 	}
 }
 
-
 void
-moveresizeedge(const Arg *arg) {
+moveresizeedge(const Arg *arg)
+{
 	/* move or resize floating window to edge of screen */
 	Client *c;
 	c = selmon->sel;
@@ -1919,32 +1920,22 @@ static void scratchpad_show ()
 {
 	if (scratchpad_last_showed == NULL || scratchpad_last_showed_is_killed ())
 		scratchpad_show_first ();
-	else
-	{
-		if (scratchpad_last_showed -> tags != SCRATCHPAD_MASK)
-		{
+	else {
+		if (scratchpad_last_showed -> tags != SCRATCHPAD_MASK) {
 			scratchpad_last_showed -> tags = SCRATCHPAD_MASK;
 			focus(NULL);
 			arrange(selmon);
-		}
-		else
-		{
+		} else {
 			_Bool found_current = 0;
 			_Bool found_next = 0;
-			for (Client * c = selmon -> clients; c != NULL; c = c -> next)
-			{
-				if (found_current == 0)
-				{
-					if (c == scratchpad_last_showed)
-					{
+			for (Client * c = selmon -> clients; c != NULL; c = c -> next) {
+				if (found_current == 0) {
+					if (c == scratchpad_last_showed) {
 						found_current = 1;
 						continue;
 					}
-				}
-				else
-				{
-					if (c -> tags == SCRATCHPAD_MASK)
-					{
+				} else {
+					if (c -> tags == SCRATCHPAD_MASK) {
 						found_next = 1;
 						scratchpad_show_client (c);
 						break;
@@ -1966,10 +1957,8 @@ static void scratchpad_show_client (Client * c)
 
 static void scratchpad_show_first (void)
 {
-	for (Client * c = selmon -> clients; c != NULL; c = c -> next)
-	{
-		if (c -> tags == SCRATCHPAD_MASK)
-		{
+	for (Client * c = selmon -> clients; c != NULL; c = c -> next) {
+		if (c -> tags == SCRATCHPAD_MASK) {
 			scratchpad_show_client (c);
 			break;
 		}
@@ -2249,7 +2238,7 @@ showhide(Client *c)
 void
 spawn(const Arg *arg)
 {
-	setinsertmode();
+	/* setinsertmode(); */
 	if (arg->v == dmenucmd)
 		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
@@ -2337,8 +2326,7 @@ togglebar(const Arg *arg)
 		if(selmon->tagset[selmon->seltags] & 1<<i)
 			selmon->pertag->showbars[i+1] = selmon->showbar;
 
-	if(selmon->pertag->curtag == 0)
-	{
+	if(selmon->pertag->curtag == 0) {
 		selmon->pertag->showbars[0] = selmon->showbar;
 	}
 	updatebarpos(selmon);
