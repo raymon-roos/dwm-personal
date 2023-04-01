@@ -281,7 +281,10 @@ static Command commands[] = {
 	CMDTAGKEYS(                          XK_7,                                    6)
 	CMDTAGKEYS(                          XK_8,                                    7)
 	CMDTAGKEYS(                          XK_9,                                    8)
-	{ {ShiftMask|ControlMask, 0, 0, 0}, {XK_q, 0, 0, 0},  quit,                   {0} },
+	{ {ShiftMask|ControlMask, 0, 0, 0},  {XK_q, 0, 0, 0},      quit,              {0} },
+	{ {0, 0, 0, 0},                      {XK_minus, 0, 0, 0},  scratchpad_show,   {0} },
+	{ {ShiftMask, 0, 0, 0},              {XK_minus, 0, 0, 0},  scratchpad_hide,   {0} },
+	{ {0, 0, 0, 0},                      {XK_equal, 0, 0, 0},  scratchpad_remove, {0} },
 };
 
 /* button definitions */
