@@ -101,7 +101,6 @@ static const char *slock[]   = { "slock", NULL };
 static const char *web[]     = { "librewolf", NULL };
 static const char *guimail[] = { "thunderbird", NULL };
 
-#include "movestack.c"
 static const Key keys[] = {
 	/* modifier                     key           function           argument */
 	{ MODKEY,                       XK_Escape,    setkeymode,        {.ui = ModeCommand} },
