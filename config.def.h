@@ -62,9 +62,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 #define TILEKEYS(MOD,G,M,S) \
-	{ MOD, XK_f, setdirs,  {.v = (int[])  { INC(G * +1),    INC(M * +1),    INC(S * +1)    } } }, \
-	{ MOD, XK_h, setfacts, {.v = (float[]){ INC(G * -0.04), INC(M * -0.06), INC(S * -0.06) } } }, \
-	{ MOD, XK_l, setfacts, {.v = (float[]){ INC(G * +0.04), INC(M * +0.06), INC(S * +0.06) } } },
+	{ MOD, XK_t, setdirs,  {.v = (int[])  { INC(G * +1),    INC(M * +1),    INC(S * +1)    } } }, \
+	{ MOD, XK_m, setfacts, {.v = (float[]){ INC(G * -0.04), INC(M * -0.06), INC(S * -0.06) } } }, \
+	{ MOD, XK_i, setfacts, {.v = (float[]){ INC(G * +0.04), INC(M * +0.06), INC(S * +0.06) } } },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -92,42 +92,42 @@ static const char *guimail[] = { "thunderbird", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key           function           argument */
-	{ MODKEY,                       XK_p,         spawn,             {.v = dmenumgd } },
-	{ MODKEY|ControlMask|ShiftMask, XK_p,         spawn,             {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_p,         spawn,             SHCMD("passmenu") },
-	{ MODKEY,                       XK_b,         spawn,             {.v = web } },
-	{ MODKEY|ShiftMask,             XK_t,         spawn,             TRMCMD("top") },
-	{ MODKEY|ShiftMask,             XK_m,         spawn,             TRMCMD("calc") },
-	{ MODKEY,                       XK_r,         spawn,             TRMCMD("launch_nnn.sh") },
-	{ MODKEY|ControlMask,           XK_c,         spawn,             SHCMD("launch_cmus.sh") },
-	{ MODKEY|ControlMask,           XK_b,         spawn,             SHCMD("cmus-remote -n") },
-	{ MODKEY|ControlMask,           XK_z,         spawn,             SHCMD("cmus-remote -r") },
-	{ MODKEY|ControlMask,           XK_m,         spawn,             SHCMD("cmus-remote -C 'toggle aaa_mode'") },
-	{ MODKEY,                       XK_n,         spawn,             {.v = guimail } },
-	{ MODKEY|ShiftMask,             XK_n,         spawn,             TRMCMD("neomutt") },
+	{ MODKEY,                       XK_semicolon, spawn,             {.v = dmenumgd } },
+	{ MODKEY|ControlMask|ShiftMask, XK_semicolon, spawn,             {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_semicolon, spawn,             SHCMD("passmenu") },
+	{ MODKEY,                       XK_z,         spawn,             {.v = web } },
+	{ MODKEY|ShiftMask,             XK_b,         spawn,             TRMCMD("top") },
+	{ MODKEY|ShiftMask,             XK_h,         spawn,             TRMCMD("calc") },
+	{ MODKEY,                       XK_p,         spawn,             TRMCMD("launch_nnn.sh") },
+	{ MODKEY|ControlMask,           XK_d,         spawn,             SHCMD("launch_cmus.sh") },
+	{ MODKEY|ControlMask,           XK_z,         spawn,             SHCMD("cmus-remote -n") },
+	{ MODKEY|ControlMask,           XK_x,         spawn,             SHCMD("cmus-remote -r") },
+	{ MODKEY|ControlMask,           XK_h,         spawn,             SHCMD("cmus-remote -C 'toggle aaa_mode'") },
+	{ MODKEY,                       XK_k,         spawn,             {.v = guimail } },
+	{ MODKEY|ShiftMask,             XK_k,         spawn,             TRMCMD("neomutt") },
 	{ MODKEY|ShiftMask,             XK_Return,    spawn,             {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_b,         togglebar,         {0} },
-	{ MODKEY,                       XK_j,         focusstack,        {.i = +1 } },
-	{ MODKEY,                       XK_k,         focusstack,        {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_j,         movestack,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,         movestack,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_i,         incnmaster,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_d,         incnmaster,        {.i = -1 } },
+//	{ MODKEY|ShiftMask,             XK_b,         togglebar,         {0} },
+	{ MODKEY,                       XK_n,         focusstack,        {.i = +1 } },
+	{ MODKEY,                       XK_e,         focusstack,        {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_n,         movestack,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_e,         movestack,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_u,         incnmaster,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_s,         incnmaster,        {.i = -1 } },
 	{ MODKEY,                       XK_Return,    zoom,              {0} },
 	{ MODKEY,                       XK_Tab,       view,              {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_l,         spawn,             {.v = slock } },
-	{ MODKEY|ShiftMask,             XK_c,         killclient,        {0} },
-	{ MODKEY,                       XK_t,         setlayout,         {.v = &layouts[0]} }, /*Tiled*/
+	{ MODKEY|ControlMask|ShiftMask, XK_v,         spawn,             {.v = slock } },
+	{ MODKEY|ShiftMask,             XK_d,         killclient,        {0} },
+	{ MODKEY,                       XK_b,         setlayout,         {.v = &layouts[0]} }, /*Tiled*/
 //  { MODKEY|ShiftMask,             XK_f,         setlayout,         {.v = &layouts[1]} }, /*Floating*/
-	{ MODKEY,                       XK_m,         setlayout,         {.v = &layouts[2]} }, /*Monocle*/
+	{ MODKEY,                       XK_h,         setlayout,         {.v = &layouts[2]} }, /*Monocle*/
 	TILEKEYS(MODKEY,                                                 1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                       0, 1, 0)
 	TILEKEYS(MODKEY|ControlMask,                                     0, 0, 1)
 	TILEKEYS(MODKEY|ShiftMask|ControlMask,                           1, 1, 1)
-	{ MODKEY|ControlMask,           XK_t,         setdirs,           {.v = (int[]){ DirHor, DirVer, DirVer } } }, /* Right stack */
-	{ MODKEY|ShiftMask,             XK_o,         setdirs,           {.v = (int[]){ DirVer, DirHor, DirHor } } }, /* Bottom stack */
-	{ MODKEY|ShiftMask|ControlMask, XK_o,         setdirs,           {.v = (int[]){ DirVer, DirVer, DirVer } } }, /* All horizontal */
-	{ MODKEY|ShiftMask|ControlMask, XK_t,         setdirs,           {.v = (int[]){ DirHor, DirHor, DirHor } } }, /* All columns */
+	{ MODKEY|ControlMask,           XK_b,         setdirs,           {.v = (int[]){ DirHor, DirVer, DirVer } } }, /* Right stack */
+	{ MODKEY|ShiftMask,             XK_y,         setdirs,           {.v = (int[]){ DirVer, DirHor, DirHor } } }, /* Bottom stack */
+	{ MODKEY|ShiftMask|ControlMask, XK_y,         setdirs,           {.v = (int[]){ DirVer, DirVer, DirVer } } }, /* All horizontal */
+	{ MODKEY|ShiftMask|ControlMask, XK_b,         setdirs,           {.v = (int[]){ DirHor, DirHor, DirHor } } }, /* All columns */
 	{ MODKEY,                       XK_space,     setlayout,         {0} },
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating,    {0} },
 	{ MODKEY,                       XK_0,         view,              {.ui = ~0 } },
@@ -138,15 +138,15 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,    tagmon,            {.i = +1 } },
 	{ MODKEY,                       XK_q,         moveplace,         {.ui = WIN_NW }},
 	{ MODKEY,                       XK_w,         moveplace,         {.ui = WIN_N  }},
-	{ MODKEY,                       XK_e,         moveplace,         {.ui = WIN_NE }},
+	{ MODKEY,                       XK_f,         moveplace,         {.ui = WIN_NE }},
 	{ MODKEY,                       XK_a,         moveplace,         {.ui = WIN_W  }},
-	{ MODKEY,                       XK_s,         moveplace,         {.ui = WIN_C  }},
-	{ MODKEY,                       XK_d,         moveplace,         {.ui = WIN_E  }},
-	{ MODKEY,                       XK_z,         moveplace,         {.ui = WIN_SW }},
-	{ MODKEY,                       XK_x,         moveplace,         {.ui = WIN_S  }},
-	{ MODKEY,                       XK_c,         moveplace,         {.ui = WIN_SE }},
-	{ MODKEY|ControlMask|ShiftMask, XK_j,         aspectresize,      {.i = +26} },
-	{ MODKEY|ControlMask|ShiftMask, XK_k,         aspectresize,      {.i = -26} },
+	{ MODKEY,                       XK_r,         moveplace,         {.ui = WIN_C  }},
+	{ MODKEY,                       XK_s,         moveplace,         {.ui = WIN_E  }},
+	{ MODKEY,                       XK_x,         moveplace,         {.ui = WIN_SW }},
+	{ MODKEY,                       XK_c,         moveplace,         {.ui = WIN_S  }},
+	{ MODKEY,                       XK_d,         moveplace,         {.ui = WIN_SE }},
+	{ MODKEY|ControlMask|ShiftMask, XK_n,         aspectresize,      {.i = +26} },
+	{ MODKEY|ControlMask|ShiftMask, XK_e,         aspectresize,      {.i = -26} },
 	{ MODKEY,                       XK_Down,      moveresize,        {.v = "0x 25y 0w 0h" } },
 	{ MODKEY,                       XK_Up,        moveresize,        {.v = "0x -25y 0w 0h" } },
 	{ MODKEY,                       XK_Right,     moveresize,        {.v = "25x 0y 0w 0h" } },
