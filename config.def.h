@@ -76,14 +76,7 @@ static const char *dmenucmd[] = {
     "dmenu_run", "-m", dmenumon,
     "-fn", dmenufont, "-nb", col_gray1,
     "-nf", col_gray3, "-sb", col_orange,
-    "-sf", col_gray4, NULL
-};
-static const char *dmenumgd[] = {
-    "dmenu_run", "-m", dmenumon,
-    "-fn", dmenufont, "-nb", col_gray1,
-    "-nf", col_gray3, "-sb", col_orange,
-    "-sf", col_gray4, "-c", "-wm",
-    NULL
+    "-sf", col_gray4, "-c", NULL
 };
 static const char *termcmd[] = { "st", NULL };
 static const char *slock[]   = { "slock", NULL };
@@ -92,8 +85,7 @@ static const char *guimail[] = { "thunderbird", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key           function           argument */
-	{ MODKEY,                       XK_semicolon, spawn,             {.v = dmenumgd } },
-	{ MODKEY|ControlMask|ShiftMask, XK_semicolon, spawn,             {.v = dmenucmd } },
+	{ MODKEY,                       XK_semicolon, spawn,             {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_semicolon, spawn,             SHCMD("passmenu") },
 	{ MODKEY,                       XK_z,         spawn,             {.v = web } },
 	{ MODKEY|ShiftMask,             XK_b,         spawn,             TRMCMD("top") },
