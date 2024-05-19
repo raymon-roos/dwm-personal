@@ -86,7 +86,7 @@ static const char *guimail[] = { "thunderbird", NULL };
 static const Key keys[] = {
 	/* modifier                     key           function           argument */
 	{ MODKEY,                       XK_semicolon, spawn,             {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_semicolon, spawn,             SHCMD("passmenu") },
+	{ MODKEY|ShiftMask,             XK_semicolon, spawn,             SHCMD("passmenu_custom") },
 	{ MODKEY,                       XK_z,         spawn,             {.v = web } },
 	{ MODKEY|ShiftMask,             XK_b,         spawn,             TRMCMD("top") },
 	{ MODKEY|ShiftMask,             XK_h,         spawn,             TRMCMD("calc") },
