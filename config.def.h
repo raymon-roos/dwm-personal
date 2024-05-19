@@ -48,7 +48,6 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol arrange function */
 	{ "[]=", tile },   /* first entry is default */
-	{ "><>", NULL },   /* no layout function means floating behavior */
 	{ "[M]", monocle },
 };
 
@@ -98,7 +97,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,         spawn,             {.v = guimail } },
 	{ MODKEY|ShiftMask,             XK_k,         spawn,             TRMCMD("neomutt") },
 	{ MODKEY|ShiftMask,             XK_Return,    spawn,             {.v = termcmd } },
-//	{ MODKEY|ShiftMask,             XK_b,         togglebar,         {0} },
 	{ MODKEY,                       XK_n,         focusstack,        {.i = +1 } },
 	{ MODKEY,                       XK_e,         focusstack,        {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_n,         movestack,         {.i = +1 } },
@@ -110,8 +108,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_v,         spawn,             {.v = slock } },
 	{ MODKEY|ShiftMask,             XK_d,         killclient,        {0} },
 	{ MODKEY,                       XK_b,         setlayout,         {.v = &layouts[0]} }, /*Tiled*/
-//  { MODKEY|ShiftMask,             XK_f,         setlayout,         {.v = &layouts[1]} }, /*Floating*/
-	{ MODKEY,                       XK_h,         setlayout,         {.v = &layouts[2]} }, /*Monocle*/
+	{ MODKEY,                       XK_h,         setlayout,         {.v = &layouts[1]} }, /*Monocle*/
 	TILEKEYS(MODKEY,                                                 1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                       0, 1, 0)
 	TILEKEYS(MODKEY|ControlMask,                                     0, 0, 1)
@@ -120,7 +117,6 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,         setdirs,           {.v = (int[]){ DirVer, DirHor, DirHor } } }, /* Bottom stack */
 	{ MODKEY|ShiftMask|ControlMask, XK_y,         setdirs,           {.v = (int[]){ DirVer, DirVer, DirVer } } }, /* All horizontal */
 	{ MODKEY|ShiftMask|ControlMask, XK_b,         setdirs,           {.v = (int[]){ DirHor, DirHor, DirHor } } }, /* All columns */
-	{ MODKEY,                       XK_space,     setlayout,         {0} },
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating,    {0} },
 	{ MODKEY,                       XK_0,         view,              {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,         tag,               {.ui = ~0 } },
@@ -175,7 +171,7 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[1]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
