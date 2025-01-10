@@ -68,11 +68,7 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-// Ending `cmd` with `; exec bash` is a trick to make the terminal run an
-// interactive bash session after the original CLI program is closed.
-// The first bash has the `-i` flag to make sure the user's "rc" files are sourced,
-// so aliases/functions work
-#define TRMCMD(cmd) { .v = (const char*[]){ "st", "-e", "bash", "-ic", cmd, NULL } }
+#define TRMCMD(cmd) { .v = (const char*[]){ "kitty", "--hold", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -82,7 +78,7 @@ static const char *dmenucmd[] = {
     "-nf", col_gray3, "-sb", col_orange,
     "-sf", col_gray4, "-c", NULL
 };
-static const char *termcmd[] = { "st", NULL };
+static const char *termcmd[] = { "kitty", NULL };
 static const char *slock[]   = { "slock", NULL };
 static const char *web[]     = { "librewolf", NULL };
 static const char *guimail[] = { "thunderbird", NULL };
@@ -92,15 +88,15 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_semicolon, spawn,             {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_semicolon, spawn,             SHCMD("passmenu_custom") },
 	{ MODKEY,                       XK_z,         spawn,             {.v = web } },
-	{ MODKEY|ShiftMask,             XK_b,         spawn,             TRMCMD("btm --default_widget_type=process --basic; exec bash") },
+	{ MODKEY|ShiftMask,             XK_b,         spawn,             TRMCMD("btm") },
 	{ MODKEY|ShiftMask,             XK_h,         spawn,             TRMCMD("calc") },
-	{ MODKEY,                       XK_p,         spawn,             TRMCMD("n; exec bash") },
+	{ MODKEY,                       XK_p,         spawn,             SHCMD("directories_dmenu.sh") },
 	{ MODKEY|ControlMask,           XK_d,         spawn,             SHCMD("st_cmus.sh") },
 	{ MODKEY|ControlMask,           XK_z,         spawn,             SHCMD("cmus-remote -n") },
 	{ MODKEY|ControlMask,           XK_x,         spawn,             SHCMD("cmus-remote -r") },
 	{ MODKEY|ControlMask,           XK_h,         spawn,             SHCMD("cmus-remote -C 'toggle aaa_mode'") },
 	{ MODKEY,                       XK_k,         spawn,             {.v = guimail } },
-	{ MODKEY|ShiftMask,             XK_k,         spawn,             TRMCMD("mailsync.sh; exec bash") },
+	// { MODKEY|ShiftMask,             XK_k,         spawn,             TRMCMD("mailsync.sh") },
 	{ MODKEY|ShiftMask,             XK_Return,    spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_n,         focusstack,        {.i = +1 } },
 	{ MODKEY,                       XK_e,         focusstack,        {.i = -1 } },
