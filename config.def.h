@@ -108,8 +108,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,       view,              {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_v,         spawn,             {.v = slock } },
 	{ MODKEY|ShiftMask,             XK_d,         killclient,        {0} },
-	{ MODKEY,                       XK_b,         setlayout,         {.v = &layouts[0]} }, /*Tiled*/
-	{ MODKEY,                       XK_h,         setlayout,         {.v = &layouts[1]} }, /*Monocle*/
+	// { MODKEY,                       XK_b,         setlayout,         {.v = &layouts[0]} }, /*Tiled*/
+	// { MODKEY,                       XK_h,         setlayout,         {.v = &layouts[1]} }, /*Monocle*/
 	TILEKEYS(MODKEY,                                                 1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                       0, 1, 0)
 	TILEKEYS(MODKEY|ControlMask,                                     0, 0, 1)
@@ -118,6 +118,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,         setdirs,           {.v = (int[]){ DirVer, DirHor, DirHor } } }, /* Bottom stack */
 	{ MODKEY|ShiftMask|ControlMask, XK_y,         setdirs,           {.v = (int[]){ DirVer, DirVer, DirVer } } }, /* All horizontal */
 	{ MODKEY|ShiftMask|ControlMask, XK_b,         setdirs,           {.v = (int[]){ DirHor, DirHor, DirHor } } }, /* All columns */
+	{ MODKEY,                       XK_h,     setlayout,         {0} },
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating,    {0} },
 	{ MODKEY,                       XK_0,         view,              {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,         tag,               {.ui = ~0 } },
